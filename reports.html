@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reports</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h1>SpoofShield</h1>
+        <a href="index.html">Overview</a>
+        <a href="dns.html">DNS Scanner</a>
+        <a href="email.html">Email Analyzer</a>
+        <a href="history.html">History</a>
+        <a href="reports.html" class="active">Reports</a>
+    </div>
+    <div class="main">
+        <h2>Report Viewer</h2>
+        <input id="id" placeholder="Report ID">
+        <button onclick="load()">Load</button>
+        <pre id="out"></pre>
+    </div>
+    <script>
+    async function load(){
+        const id=document.getElementById('id').value;
+        const res=await fetch(`../api/report.php?id=${id}`);
+        document.getElementById('out').textContent=JSON.stringify(await res.json(),null,2);
+    }
+    </script>
+</body>
+</html>

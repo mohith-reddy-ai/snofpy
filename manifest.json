@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "SpoofShield",
+  "version": "1.0.0",
+  "description": "Investigate suspicious websites directly from your browser.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SpoofShield"
+  },
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["http://localhost:8000/*"],
+  "icons": {
+    "128": "icon.png"
+  }
+}

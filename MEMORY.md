@@ -1,0 +1,2 @@
+- [Project Init](memory/project-init.md) — hook
+- [Implementation Complete](memory/implementation-complete.md) — hook

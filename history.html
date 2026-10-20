@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h1>SpoofShield</h1>
+        <a href="index.html">Overview</a>
+        <a href="dns.html">DNS Scanner</a>
+        <a href="email.html">Email Analyzer</a>
+        <a href="history.html" class="active">History</a>
+        <a href="reports.html">Reports</a>
+    </div>
+    <div class="main">
+        <h2>Investigation History</h2>
+        <table id="table" border="1" cellpadding="8"><tr><th>ID</th><th>Type</th><th>Target</th><th>Risk</th><th>Severity</th><th>Date</th></tr></table>
+    </div>
+    <script>
+    fetch('../api/history.php?limit=200').then(r=>r.json()).then(data=>{
+        const table=document.getElementById('table');
+        data.forEach(row=>{
+            const tr=document.createElement('tr');
+            tr.innerHTML=`<td>${row.id}</td><td>${row.type}</td><td>${row.target}</td><td>${row.risk_score}</td><td>${row.severity}</td><td>${row.created_at}</td>`;
+            table.appendChild(tr);
+        });
+    });
+    </script>
+</body>
+</html>

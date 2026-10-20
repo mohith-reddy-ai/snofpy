@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DNS Scanner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h1>SpoofShield</h1>
+        <a href="index.html">Overview</a>
+        <a href="dns.html" class="active">DNS Scanner</a>
+        <a href="email.html">Email Analyzer</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+    </div>
+    <div class="main">
+        <h2>DNS Security Investigation</h2>
+        <input id="domain" placeholder="example.com">
+        <button onclick="scan()">Scan Domain</button>
+        <pre id="result"></pre>
+    </div>
+    <script>
+    async function scan(){
+        const domain = document.getElementById('domain').value;
+        const res = await fetch('../api/dns_scan.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({domain})});
+        document.getElementById('result').textContent = JSON.stringify(await res.json(),null,2);
+    }
+    </script>
+</body>
+</html>

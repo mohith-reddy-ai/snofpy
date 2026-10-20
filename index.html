@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SpoofShield Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h1>SpoofShield</h1>
+        <a href="index.html" class="active">Overview</a>
+        <a href="dns.html">DNS Scanner</a>
+        <a href="email.html">Email Analyzer</a>
+        <a href="history.html">History</a>
+        <a href="reports.html">Reports</a>
+    </div>
+    <div class="main">
+        <h2>Security Operations Overview</h2>
+        <div class="cards">
+            <div class="card">Total Investigations: <span id="total">0</span></div>
+            <div class="card">DNS Scans: <span id="dns">0</span></div>
+            <div class="card">Email Analyses: <span id="email">0</span></div>
+            <div class="card">High Risk: <span id="high">0</span></div>
+        </div>
+        <div class="quick-scan">
+            <input id="domainInput" placeholder="example.com">
+            <button onclick="scan()">Scan Domain</button>
+        </div>
+    </div>
+    <script>
+    async function loadStats() {
+        const res = await fetch('../api/history.php?limit=1000');
+        const data = await res.json();
+        document.getElementById('total').textContent = data.length;
+        document.getElementById('dns').textContent = data.filter(i=>i.type==='dns').length;
+        document.getElementById('email').textContent = data.filter(i=>i.type==='email').length;
+        document.getElementById('high').textContent = data.filter(i=>i.severity==='High').length;
+    }
+    async function scan() {
+        const domain = document.getElementById('domainInput').value;
+        await fetch('../api/dns_scan.php', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({domain})});
+        loadStats();
+    }
+    loadStats();
+    </script>
+</body>
+</html>

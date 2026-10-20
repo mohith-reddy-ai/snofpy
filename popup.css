@@ -1,0 +1,21 @@
+:root {
+    --bg:#080D18; --surface:#111B2D; --elev:#162238; --blue:#4F8CFF; --cyan:#42D9F5;
+    --text:#F1F5FF; --sub:#97A6BD; --border:#26364D;
+    --high:#FF5D67; --med:#FFB547; --low:#43D9A3;
+}
+*{box-sizing:border-box}
+body{width:380px;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;padding:16px;margin:0;font-size:13px}
+.header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.logo{font-size:24px}.title{font-weight:700}.subtitle{font-size:11px;color:var(--sub);margin-top:2px}
+.status{margin-left:auto;font-size:14px}
+.card{background:var(--surface);padding:12px;border-radius:8px;border:1px solid var(--border);margin-bottom:16px}
+.label{font-size:11px;color:var(--sub);text-transform:uppercase;margin-bottom:4px}
+#host{font-weight:600;word-break:break-all}
+.primary{width:100%;background:var(--blue);color:white;border:none;padding:12px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600}
+.primary:disabled{opacity:.6;cursor:not-allowed}
+.risk{margin-top:12px;padding:12px;background:var(--surface);border-radius:8px;border:1px solid var(--border);font-size:12px;line-height:1.6}
+.risk div{margin:4px 0}
+.hidden{display:none}
+.footer{margin-top:16px;text-align:center;font-size:12px;color:var(--sub)}
+.footer a{color:var(--blue);text-decoration:none}
+.footer a:hover{text-decoration:underline}
